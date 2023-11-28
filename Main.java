@@ -11,8 +11,8 @@ class Employee implements Serializable {
     private float basicSalary;
     private String emailAddress;
 
-    public Employee(int id, String name, String fatherName, String motherName,
-            int age, String bloodGroup, float basicSalary, String emailAddress) {
+    public Employee(int id, String name, String fatherName, String motherName, int age, String bloodGroup,
+            float basicSalary, String emailAddress) {
         this.id = id;
         this.name = name;
         this.fatherName = fatherName;
@@ -89,8 +89,8 @@ class Employee implements Serializable {
 }
 
 class EmployeeManagementSystem {
-    private List<Employee> employees;
-    private Scanner scanner;
+    private final List<Employee> employees;
+    private final Scanner scanner;
 
     public EmployeeManagementSystem() {
         employees = new ArrayList<>();
@@ -109,22 +109,14 @@ class EmployeeManagementSystem {
             scanner.nextLine();
 
             switch (choice) {
-                case '1':
-                    addRecord();
-                    break;
-                case '2':
-                    listRecords();
-                    break;
-                case '3':
-                    modifyRecords();
-                    break;
-                case '4':
-                    deleteRecords();
-                    break;
-                case '5':
+                case '1' -> addRecord();
+                case '2' -> listRecords();
+                case '3' -> modifyRecords();
+                case '4' -> deleteRecords();
+                case '5' -> {
                     return;
-                default:
-                    System.out.println("Invalid choice!");
+                }
+                default -> System.out.println("Invalid choice!");
             }
         }
     }
@@ -166,7 +158,7 @@ class EmployeeManagementSystem {
 
     private void listRecords() {
         for (Employee employee : employees) {
-            System.out.println("DIU Employee ID: " + employee.getId());
+            System.out.println("Employee ID: " + employee.getId());
             System.out.println("Name: " + employee.getName());
             System.out.println("Father's Name: " + employee.getFatherName());
             System.out.println("Mother's Name: " + employee.getMotherName());
